@@ -13,7 +13,7 @@ public class lab4 {
         String pattern = userInput.split("\\s+")[1];
         String fileName = userInput.split("\\s+")[2]; 
 
-    
+        
 
         TextReader reader = new TextReader();
         reader.read(fileName, pattern);
@@ -22,11 +22,6 @@ public class lab4 {
         
 
         
-    }
-
-    private void readFile(String pattern, String file ) {
-
-
     }
 
 }

@@ -14,15 +14,24 @@ public class TextReader {
 	Map<String, ArrayList<Integer>> wordMap = new HashMap<>();
 
 	public void read(String fileName, String pattern) {
-		try {
 
+		setUpWordMap(fileName);
+
+		Set<Integer> matchedLines = matchWords(wordMap, pattern);
+
+		printResults(matchedLines,lines);
+	}
+
+
+	private void setUpWordMap(String fileName) {
+		try {
 			File file = new File(fileName);
 			Scanner scanner = new Scanner(file);
 			while (scanner.hasNextLine()) {
 				String data = scanner.nextLine();
 				lines.add(data);
 			}
-
+	
 			// adds all words in each line into wordList
 			int index = 0;
 			for (String line : lines) {
@@ -36,16 +45,12 @@ public class TextReader {
 				}
 				index++;
 			}
-
-			Set<Integer> matchedLines = matchWords(wordMap, pattern);
-
-			printResults(matchedLines,lines);
-
 			scanner.close();
 		} catch (FileNotFoundException e) {
 			System.out.println("An error occurred.");
 			e.printStackTrace();
 		}
+		
 	}
 
 	private Set<Integer> matchWords(Map<String, ArrayList<Integer>> words, String pattern) {
